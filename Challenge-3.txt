@@ -1,0 +1,58 @@
+Challenge #3
+
+We have a nested object, we would like a function that you pass in the object and a key and get back the value. How this is implemented is up to you.
+Example Inputs
+object = {“a”:{“b”:{“c”:”d”}}}
+key = a/b/c
+object = {“x”:{“y”:{“z”:”a”}}}
+key = x/y/z
+value = a
+
+
+Solution -
+
+
+let obj = {
+	a: {
+		b: {
+			c: 'd',
+		},
+	},
+	x: {
+		y: 
+         {
+           z: 'a'
+         },
+	},
+};
+
+
+function getObjAndKey(object, key) {
+	// if you want another split key you can change this.
+	//console.log(object);
+	//console.log(key);
+	const keys = key.split('.');
+		//console.log(keys);
+	let obj = object;
+	//console.log(obj);
+	for (let i of keys) {
+		for (let [objKey, value] of Object.entries(obj)) {
+		     //console.log("Key");
+		    //console.log(objKey);
+		   // console.log("value");
+		   //  console.log(value);
+		    // console.log("obj key");
+		   // console.log(objKey);
+		    //  console.log(" keys");
+		    //  console.log(keys);
+			if (!keys.includes(objKey)) {
+				continue;
+			}
+			obj = value;
+		}
+	}
+	return obj;
+}
+
+console.log(getObjAndKey(obj, 'a.b.c'));
+console.log(getObjAndKey(obj, 'x.y.z'));
